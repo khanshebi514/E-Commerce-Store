@@ -1,0 +1,109 @@
+class Products {
+    async getProducts(){
+     try {
+        let result = await fetch('js/products.json')
+        let data = await result.json();
+        let products = data.items;
+
+        products = products.map(items => {
+            const {title, price} = items.fields;
+
+            const {id} = items.sys;
+            const {image} = items.fields.image.fields.file.url;
+            return(title, price, id, image)
+        })
+
+
+        return products
+    }
+       catch (error) {
+        console.log(error)
+       }
+    }
+
+}
+
+
+/////
+let cart =[];
+
+// getiing the Products
+class Products{
+    getProducts(){
+        let data = allProducts;
+        let products = data.items
+
+        products = products.map(items => {
+            const {title, price} = items.fields;
+
+            const {id} = items.sys;
+            const {image} = items.fields.image.fields.file.url;
+            return {title, price, id, image}
+        })
+
+        return products
+
+
+    }}
+
+// displaying the proucts
+
+class UI {
+    displayProducts(products){
+        let result = "";
+        products = products.map(product => {
+            result += 
+            `
+        <!-- --single prdouct-- -->
+        <article class="product">
+            <div class="img-container">
+                <img src=${product.image} class="product-img">
+                <button class="bag-btn" id=${product.id}><i><span class="cart-bag"><img src="./images/cart_icon.png"></span></i>Add to bag</button>
+            </div>
+            <h3>${product.title}</h3>
+            <h4>$${product.price}</h4>
+        </article>
+     <!---End of single product-->
+        `
+
+     productDOM.innerHTML = result;
+
+
+            
+        }); 
+       
+
+    }
+    getbagbuttons(){
+        const bagButtons = [...document.querySelectorAll(".bag-btn")]
+        bagButtons.forEach(button => {
+            let id = button.dataset.Id;
+            console.log(id)
+        })
+
+    }
+
+}
+
+// local storage
+class Storage {
+ static saveProducts(products){
+    localStorage.setItem('products', JSON.stringify(products))
+ }
+}
+
+document.addEventListener("DOMContentLoaded", (ui, products)=>{
+    const ui = new UI();
+    const products = new Products();
+
+    //getting products
+
+    products.getProducts().then(products => {
+        ui.displayProducts(products)
+        Storage.saveProducts(products)}
+
+    ).then(()=> {
+        ui.getbagbuttons()
+    })
+     
+})

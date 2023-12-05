@@ -1,0 +1,23 @@
+.nav-icon span{
+    display: flex;
+    width: 30px;
+    height: 5px;
+    border: 2px solid black;
+    background-color: black;
+    border-radius: 10%;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: space-between;
+    margin: 3px;
+}
+
+.cart-bag{
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+}
+.cart-bag img{
+    width: 20px;
+    /* margin-top: 4px; */
+    
+}
